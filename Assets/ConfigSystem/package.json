@@ -2,7 +2,7 @@
   "name": "com.realgressa.config-system",
   "displayName": "Config System",
   "author": "Vladyslav Luhovskoi",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "unity": "2021.2",
   "description": "Basic json config system for Unity.",
   "keywords": [
