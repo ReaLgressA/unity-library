@@ -1,8 +1,9 @@
   
 {
-	"name": "com.svermeulen.extenject",
+	"name": "com.mathijsbakker.extenject",
 	"displayName": "Extenject",
-	"version": "0.0.1",
+	"version": "9.2.1",
 	"description": "Dependency Injection Framework for Unity3D",
-	"dependencies": {}
+	"dependencies": {},
+	"unity": "2019.3" 
 }
