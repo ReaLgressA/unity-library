@@ -33,8 +33,8 @@ namespace Zenject.ReflectionBaking
 
                 var assemblyPath = assemblies[i].Location;
 
-                if (!string.IsNullOrEmpty(assemblyPath)) {
-                  AddSearchDirectory(Path.GetDirectoryName(assemblies[i].Location));
+                if (!string.IsNullOrWhiteSpace(assemblyPath)) {
+                  AddSearchDirectory(Path.GetDirectoryName(assemblyPath));
                 }
             }
         }
