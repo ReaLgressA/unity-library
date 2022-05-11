@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using ConfigSystem.Utility;
+using Newtonsoft.Json;
 
 namespace ConfigSystem {
     public class ConfigManager : IConfigManager {
@@ -9,6 +10,12 @@ namespace ConfigSystem {
 
         public ConfigManager(IConfigFactory configFactory) {
             this.configFactory = configFactory;
+            foreach (JsonConverter converter in configFactory.Converters)
+            {
+                if (converter is IConfigManagerDependant configManagerUser) {
+                    configManagerUser.ConfigManager = this;
+                }
+            }
         }
 
         public T LoadFromStreamingAssets<T>(string path) where T : BaseConfig {
