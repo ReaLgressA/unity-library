@@ -8,6 +8,8 @@ namespace ConfigSystem {
         private readonly IConfigFactory configFactory;
         private readonly Dictionary<string, BaseConfig> loadedConfigs = new();
 
+        public IConfigFactory ConfigFactory => configFactory;
+        
         public ConfigManager(IConfigFactory configFactory) {
             this.configFactory = configFactory;
             foreach (JsonConverter converter in configFactory.Converters)

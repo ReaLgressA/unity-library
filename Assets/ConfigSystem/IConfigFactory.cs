@@ -3,7 +3,9 @@ using Newtonsoft.Json;
 
 namespace ConfigSystem {
     public interface IConfigFactory {
-        public List<JsonConverter> Converters { get; }
+        List<JsonConverter> Converters { get; }
+        JsonSerializer JsonSerializer { get; }
+        
         T BuildFromJson<T>(string json) where T : BaseConfig;
     }
 }
