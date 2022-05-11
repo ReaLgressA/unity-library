@@ -2,7 +2,7 @@
 
 namespace ConfigSystem.Utility
 {
-    public static partial class StringExtensions
+    public static class StringExtensions
     {
         public static string ReadTextFile(string pathJson)
         {

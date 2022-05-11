@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 
 namespace ConfigSystem {
     public class ConfigFactory : IConfigFactory {
-        private readonly Dictionary<string, Func<Hashtable, BaseConfig>> configTypeFactory = new ();
         private readonly JsonSerializer jsonSerializer;
         
-        public List<JsonConverter> Converters { get; protected set; } = new();
+        public List<JsonConverter> Converters { get; }
         
-        public ConfigFactory() {
+        public ConfigFactory(List<JsonConverter> converters) {
+            Converters = converters ?? new();
             jsonSerializer = JsonSerializer.Create(new JsonSerializerSettings {
                 Converters = Converters
             });
