@@ -11,12 +11,14 @@ namespace ConfigSystem {
         public List<JsonConverter> Converters { get; }
 
         public JsonSerializer JsonSerializer => jsonSerializer;
+        public JsonSerializerSettings SerializerSettings { get; }
         
         public ConfigFactory(List<JsonConverter> converters) {
             Converters = converters ?? new();
-            jsonSerializer = JsonSerializer.Create(new JsonSerializerSettings {
+            SerializerSettings = new JsonSerializerSettings {
                 Converters = Converters
-            });
+            };
+            jsonSerializer = JsonSerializer.Create(SerializerSettings);
         }
         
         public virtual T BuildFromJson<T>(string json) where T : BaseConfig {
