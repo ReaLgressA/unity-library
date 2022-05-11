@@ -4,6 +4,12 @@ using UnityEngine;
 
 namespace ConfigSystem.JsonConverters {
     public class HexColorJsonConverter : JsonConverter<Color> {
+        private readonly bool isOkayToBeNull;
+        
+        public HexColorJsonConverter(bool isOkayToBeNull = false) {
+            this.isOkayToBeNull = isOkayToBeNull;
+        }
+        
         public override void WriteJson(JsonWriter writer, Color value, JsonSerializer serializer) {
             string colorHexString = ColorUtility.ToHtmlStringRGBA(value);
             writer.WriteValue(colorHexString);
@@ -15,11 +21,15 @@ namespace ConfigSystem.JsonConverters {
                                        bool hasExistingValue,
                                        JsonSerializer serializer) {
 
-            string colorHexString = reader.ReadAsString();
-            if (!ColorUtility.TryParseHtmlString(colorHexString, out Color defaultValue)) {
-                Debug.LogError($"Failed to parse hex color form string '{colorHexString}'");
+            string colorHexString = reader.Value as string;
+            if (!string.IsNullOrWhiteSpace(colorHexString) 
+                && ColorUtility.TryParseHtmlString(colorHexString, out Color parsedValue)) {
+                return parsedValue;
             }
-            return defaultValue;
+            if (!isOkayToBeNull) {
+                Debug.LogError($"Failed to parse hex color from string '{colorHexString}'");
+            }
+            return existingValue;
         }
     }
     
