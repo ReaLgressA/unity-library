@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 namespace ConfigSystem {
     public class ConfigManager : IConfigManager {
         private readonly IConfigFactory configFactory;
-        private readonly Dictionary<string, BaseConfig> loadedConfigs = new();
+        private readonly Dictionary<string, BaseConfig> loadedConfigs = new Dictionary<string, BaseConfig>();
 
         public IConfigFactory ConfigFactory => configFactory;
         

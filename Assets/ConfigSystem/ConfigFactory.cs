@@ -14,7 +14,7 @@ namespace ConfigSystem {
         public JsonSerializerSettings SerializerSettings { get; }
         
         public ConfigFactory(List<JsonConverter> converters) {
-            Converters = converters ?? new();
+            Converters = converters ?? new List<JsonConverter>();
             SerializerSettings = new JsonSerializerSettings {
                 Converters = Converters
             };
@@ -22,8 +22,8 @@ namespace ConfigSystem {
         }
         
         public virtual T BuildFromJson<T>(string json) where T : BaseConfig {
-            using StringReader stringReader = new(json);
-            using JsonTextReader jsonReader = new(stringReader);
+            using StringReader stringReader = new StringReader(json);
+            using JsonTextReader jsonReader = new JsonTextReader(stringReader);
             try {
                 return jsonSerializer.Deserialize<T>(jsonReader);
             } catch (Exception ex) {
