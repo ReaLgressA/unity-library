@@ -31,7 +31,8 @@ namespace ConfigSystem {
             }
 
             string json = StringExtensions.ReadTextFile(path);
-            if (json == null) {
+            if (string.IsNullOrWhiteSpace(json)) {
+                Debug.LogError("JSON content is empty!");
                 return null;
             }
 
@@ -42,6 +43,15 @@ namespace ConfigSystem {
                 Debug.LogError($"Failed to load config '{typeof(T)}' by path: '{path}'");
             }
 
+            return config;
+        }
+
+        public T LoadFromJson<T>(string json) where T : BaseConfig {
+            if (string.IsNullOrWhiteSpace(json)) {
+                Debug.LogError("JSON content is empty!");
+                return null;
+            }
+            T config = configFactory.BuildFromJson<T>(json);
             return config;
         }
     }

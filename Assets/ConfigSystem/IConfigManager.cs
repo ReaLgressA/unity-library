@@ -4,5 +4,6 @@ namespace ConfigSystem {
         IConfigFactory ConfigFactory { get; }
         
         T LoadFromStreamingAssets<T>(string path) where T : BaseConfig;
+        T LoadFromJson<T>(string json) where T : BaseConfig;
     }
 }

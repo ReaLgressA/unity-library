@@ -2,7 +2,7 @@
   "name": "com.realgressa.config-system",
   "displayName": "Config System",
   "author": "Vladyslav Luhovskoi",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "unity": "2021.2",
   "description": "Basic json config system for Unity.",
   "keywords": [
@@ -17,7 +17,7 @@
     "directory": "Assets/ConfigSystem"
   },
   "dependencies": {
-    "com.unity.nuget.newtonsoft-json": "3.0.1"
+    "com.unity.nuget.newtonsoft-json": "3.0.2"
   },
   "license": "MIT"
 }
